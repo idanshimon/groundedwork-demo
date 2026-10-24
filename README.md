@@ -16,6 +16,12 @@ The separate 30-second, silent [HyperFrames walkthrough](walkthrough/) explains 
 
 The walkthrough uses explicitly labeled recorded results from engine 0.1.0. The interactive playground uses the bundled engine 0.2.0; the demonstrated cases were verified unchanged. Recorded animation is not presented as a live engine execution.
 
+## OpenSpec
+
+The shipped playback contract lives in [walkthrough-experience](openspec/specs/walkthrough-experience/spec.md), with a retrospective proposal/design/tasks and executed evidence in its archived change. Run `openspec list --specs` and `openspec validate --all --strict --no-interactive` from this repository root.
+
+The library owns [playground-experience](https://github.com/idanshimon/groundedwork/blob/main/openspec/specs/playground-experience/spec.md) and retrieval invariants; this repository owns the companion player and deployment-specific site navigation. A playground rebuild must preserve newer deployment-only navigation rather than overwrite it blindly.
+
 ## Rebuild and test
 
 The playground's source, static builder and regression suite live in the library's `playground/` directory. Compile the TypeScript engine and run `python3 playground/build_static.py` there, then copy `playground/dist/index.html` here. No external runtime dependencies are needed by the generated page.
