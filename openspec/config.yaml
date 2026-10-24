@@ -1,20 +1,29 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Project: groundedwork-demo, the public static playground and its optional
+  30-second HyperFrames browser walkthrough on GitHub Pages.
+  The library repository idanshimon/groundedwork owns engine algorithms,
+  synthetic fixtures and the playground-experience adapter/UI specification.
+  This repository owns walkthrough-experience, recorded evidence, browser
+  playback controls and deployment-specific site-return navigation.
+  Runtime: static HTML/CSS/JS, vendored GSAP and the real compiled TypeScript
+  engine; no LLM or backend call. Recorded engine 0.1.0 examples are labeled
+  separately from the interactive bundle's actual version.
+  grounded=true is not semantic correctness. Retrospective baselines describe
+  executed behavior and must preserve newer root-site navigation.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+rules:
+  proposal:
+    - "Name the owning repository and capability; do not duplicate engine specifications."
+    - "Identify retrospective baselines; do not imply prior design approval."
+    - "State non-goals and recorded-versus-live evidence boundaries."
+  design:
+    - "Separate deterministic composition from playback shell clock."
+    - "Preserve local assets, reduced motion, captions, keyboard controls and truthful evidence."
+  tasks:
+    - "Group by component; finish each group with executed verification."
+    - "Keep unknown, skipped, warning and passing evidence distinct."
+  spec:
+    - "Put MUST or SHALL on the first body line of every requirement."
+    - "Include at least one WHEN/THEN scenario per requirement."
