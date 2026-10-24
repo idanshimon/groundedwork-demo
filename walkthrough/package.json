@@ -1,0 +1,21 @@
+{
+  "name": "walkthrough",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4175",
+    "evidence": "node scripts/evidence.mjs",
+    "assets": "node scripts/assets.mjs",
+    "lint": "hyperframes lint film",
+    "check": "hyperframes check film --samples 12 --at 3,10,17,23,28",
+    "snapshot": "hyperframes snapshot film --at 3,10,17,23,28 --no-end --describe false -o evidence/snapshots",
+    "test": "node --test tests/playback.test.mjs"
+  },
+  "dependencies": {
+    "gsap": "3.14.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "hyperframes": "0.8.167"
+  }
+}

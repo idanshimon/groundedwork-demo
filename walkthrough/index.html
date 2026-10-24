@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ed">
+    <title>Evidence, not assumptions — groundedwork walkthrough</title>
+    <link rel="stylesheet" href="player.css">
+    <script src="player.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="groundedwork live playground"><span class="brand-mark" aria-hidden="true"></span>groundedwork<span class="wordmark-note">/ a closer look</span></a>
+      <a class="back-link" href="../">Try the live playground <span aria-hidden="true">↗</span></a>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">THE RETRIEVAL LAYER, EXPLAINED</p>
+        <h1>Evidence, not assumptions.</h1>
+        <p>How a question becomes a working set. And when that set should stay empty.</p>
+      </div>
+      <section class="player" aria-label="30-second animated walkthrough">
+        <div class="screen" id="screen">
+          <iframe id="film" src="film/index.html" title="Animated explanation of groundedwork retrieval" tabindex="-1"></iframe>
+          <button class="start-overlay" id="start" aria-label="Play the 30-second walkthrough">
+            <span class="start-icon" aria-hidden="true">▶</span>
+            <span>Watch the walkthrough<small>30 seconds · silent, by design</small></span>
+          </button>
+        </div>
+        <div class="transport">
+          <button id="play" class="play-button" disabled aria-label="Play walkthrough">Play</button>
+          <button id="replay" disabled aria-label="Replay from the beginning">Replay</button>
+          <label class="sr-only" for="scrub">Seek walkthrough</label>
+          <input id="scrub" type="range" min="0" max="30" step="0.05" value="0" disabled aria-valuetext="0 seconds of 30">
+          <output id="time" for="scrub" aria-label="Playback time">0:00 / 0:30</output>
+          <span class="silent-note">NO AUDIO</span>
+        </div>
+        <nav class="chapters" aria-label="Walkthrough chapters">
+          <button data-seek="0" data-read-at="2" aria-current="step"><span>01</span>The working set<small>0:00</small></button>
+          <button data-seek="6" data-read-at="8"><span>02</span>A source to use<small>0:06</small></button>
+          <button data-seek="14" data-read-at="16"><span>03</span>The empty set<small>0:14</small></button>
+          <button data-seek="21" data-read-at="23"><span>04</span>Know the boundary<small>0:21</small></button>
+        </nav>
+      </section>
+      <aside class="chapter-caption" aria-label="Current chapter explanation">
+        <p id="chapter-caption-title">01 / The working set</p>
+        <p id="chapter-caption-copy">A question becomes keywords. BM25 ranks the documents, and the relevance floor filters the candidates. The working set can be empty.</p>
+      </aside>
+      <div class="under-player">
+        <p id="status" role="status">Loading local composition…</p>
+        <label class="motion-option"><input type="checkbox" id="reduce"> Reduce motion</label>
+      </div>
+      <details class="transcript">
+        <summary>Read the walkthrough <span>Text alternative &amp; recording notes</span></summary>
+        <div class="transcript-body">
+          <p><strong>01 / The working set.</strong> groundedwork tokenizes a question, ranks documents using BM25 keyword matching, and filters the top candidates against a relevance floor. The surviving documents form the working set.</p>
+          <p><strong>02 / A source to use.</strong> “How do I get a refund?” becomes the term “refund”. In the recorded Nimbus corpus, Returns &amp; Refunds scores 3.8605, above the 0.5 floor. The source says: “Not happy with your beans? Return any unopened bag within 30 days for a full refund. Opened bags qualify for store credit. Email support to start a refund.” Retrieved knowledge is assembled with grounding instructions for your model. groundedwork itself never calls an LLM.</p>
+          <p><strong>03 / The empty set.</strong> “What is the capital of France?” produces no hits in these documents. The working set is empty and grounded is false. No knowledge is injected. The engine's abstention response is “I don't have that in my knowledge base, so I won't guess.” This is about the corpus, not whether the question has an answer elsewhere.</p>
+          <p><strong>04 / Know the boundary.</strong> The floor is a lexical gate, not semantic correctness verification. “when does it show up at my door?” incorrectly retrieves Pausing Your Subscription with score 2.9429, above the same floor. Here grounded=true only means a document passed the gate, not that the source answers the question. Review retrieval quality and evaluate your model separately. Retrieve evidence. Keep the right to say no.</p>
+          <p class="recording-note">Recorded example · Nimbus sample documents. Deployed engine 0.1.0, 24 fictional documents, top_k 3. These are recorded results, not a live engine execution. The animation shows source extracts, not generated answers. <a href="evidence/recording.json">Inspect the evidence JSON</a>.</p>
+        </div>
+      </details>
+    </main>
+    <footer><span>A small context. A clearer boundary.</span><a href="../">Make it your own in the playground <span aria-hidden="true">↗</span></a></footer>
+    <noscript><p class="no-script">JavaScript is needed for playback. The full text alternative above remains available.</p></noscript>
+  </body>
+</html>

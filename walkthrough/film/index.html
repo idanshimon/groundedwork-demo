@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>groundedwork — retrieve evidence</title>
+    <link rel="stylesheet" href="film.css">
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="recording.js"></script>
+  </head>
+  <body>
+    <main id="root" data-composition-id="groundedwork-walkthrough" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <header class="film-header"><span class="logo">groundedwork<span class="logo-dot"></span></span><span>THE WORKING SET / AN EXPLAINER</span></header>
+
+      <section id="pipeline" class="scene clip" data-start="0" data-duration="6" data-track-index="0">
+        <div class="chapter-label">01 / THE WORKING SET</div>
+        <h1 class="drift">A smaller context.<br>A deliberate <em>boundary.</em></h1>
+        <p class="deck drift">Retrieve from your documents.<br>Keep only candidates that clear the floor.</p>
+        <div class="pipeline">
+          <div class="pipeline-step drift"><span class="step-number">01</span><h2>Question</h2><p>Tokenize the words</p><div class="token">refund</div></div>
+          <div class="connector" aria-hidden="true">→</div>
+          <div class="pipeline-step drift"><span class="step-number">02</span><h2>Rank</h2><p>BM25 keyword matching</p><div class="doc-stack"><i></i><i></i><i></i></div><span class="corpus-count"></span></div>
+          <div class="connector" aria-hidden="true">→</div>
+          <div class="pipeline-step gate-step drift"><span class="step-number">03</span><h2>Gate</h2><p>Apply a relevance floor</p><div class="gate-line"></div><span class="gate-text">A lexical threshold</span></div>
+          <div class="connector" aria-hidden="true">→</div>
+          <div class="pipeline-step working-step drift"><span class="step-number">04</span><h2>Working set</h2><p class="working-limit"></p><div class="working-symbol" aria-hidden="true">[ <span>≡</span> ]</div></div>
+        </div>
+        <p class="scene-foot">A working set can be empty. Returning something is not the goal.</p>
+      </section>
+
+      <section id="matched" class="scene clip" data-start="6" data-duration="8" data-track-index="0">
+        <div class="chapter-label">02 / A SOURCE TO USE</div>
+        <h1 class="drift">A question.<br><em>A source that fits.</em></h1>
+        <div class="match-layout">
+          <div class="query-column drift">
+            <span class="micro">THE QUESTION</span>
+            <p class="query" id="refund-query"></p>
+            <div class="term-row"><span>Tokenized</span><span class="token">refund</span></div>
+            <div class="score-card">
+              <div class="score-top"><span>Returns &amp; Refunds</span><strong id="refund-score"></strong></div>
+              <div class="score-track"><div id="refund-bar"></div><div class="floor-marker"></div></div>
+              <div class="score-labels"><span>BM25 score</span><span class="floor-copy"></span></div>
+            </div>
+            <p class="verdict"><span class="verdict-dot"></span>One source clears the gate</p>
+          </div>
+          <article class="source-card drift">
+            <div class="source-heading"><span>SOURCE EXTRACT</span><span>01 DOCUMENT</span></div>
+            <h2>Returns &amp; Refunds</h2>
+            <blockquote id="refund-extract"></blockquote>
+            <div class="source-footer">Retrieved knowledge → your model's prompt</div>
+          </article>
+        </div>
+        <p class="scene-foot">Bring your own model. groundedwork assembles evidence; it never calls an LLM.</p>
+      </section>
+
+      <section id="abstain" class="scene clip" data-start="14" data-duration="7" data-track-index="0">
+        <div class="chapter-label">03 / THE EMPTY SET</div>
+        <h1 class="drift">No evidence?<br><em>Don't fill the silence.</em></h1>
+        <div class="abstain-layout">
+          <div class="abstain-query drift"><span class="micro">THE QUESTION</span><p class="query" id="abstain-query"></p><div class="term-row"><span class="token">capital</span><span class="token">france</span></div><p class="no-match">No matching documents in this corpus.</p></div>
+          <div class="empty-set drift"><div class="empty-brackets" aria-hidden="true">[ <span>∅</span> ]</div><span class="micro">EMPTY WORKING SET</span><p>No knowledge injected</p><span class="false-tag">grounded = false</span></div>
+          <div class="abstain-response drift"><span class="micro">ABSTENTION</span><blockquote>“I don't have that in my knowledge base, so I won't guess.”</blockquote><p>No LLM call. An explicit no-evidence response.</p></div>
+        </div>
+        <p class="scene-foot">A boundary around these documents — not a claim about everything the world knows.</p>
+      </section>
+
+      <section id="boundary" class="scene clip" data-start="21" data-duration="9" data-track-index="0">
+        <div class="chapter-label">04 / KNOW THE BOUNDARY</div>
+        <div id="caveat">
+          <h1 class="drift">A lexical gate.<br><em>Not a truth detector.</em></h1>
+          <div class="limitation-card drift">
+            <div><span class="micro">A RECORDED WRONG MATCH</span><p class="query" id="wrong-query"></p></div>
+            <div class="wrong-arrow" aria-hidden="true">→</div>
+            <div><span class="micro">SOURCE RETURNED</span><h2>Pausing Your Subscription</h2><p class="wrong-score">Score <strong id="wrong-score"></strong> <span class="wrong-floor"></span></p></div>
+          </div>
+          <p class="warning-copy drift">grounded = true means a source passed the floor.<br>It does <strong>not</strong> mean the source answers the question.</p>
+        </div>
+        <div id="takeaway">
+          <span class="micro drift">THE TAKEAWAY</span>
+          <h1><span class="closing-line drift">Retrieve evidence.</span><br><em class="closing-line drift">Keep the right to say no.</em></h1>
+          <p class="drift">Evaluate the retrieval. Bring your own model. Keep the boundary visible.</p>
+          <div class="end-rule"></div>
+          <span class="end-note drift">EXPLORE THE LIVE PLAYGROUND</span>
+        </div>
+        <p class="scene-foot">Threshold ≠ semantic correctness verification. Evaluate your sources and your model separately.</p>
+      </section>
+      <footer class="film-footer"><span>Recorded example · Nimbus sample documents</span><span id="engine-label"></span></footer>
+    </main>
+    <script src="film.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["groundedwork-walkthrough"] = window.walkthrough.timeline;
+    </script>
+  </body>
+</html>

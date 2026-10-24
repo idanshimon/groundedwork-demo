@@ -1,0 +1,11 @@
+node_modules/
+.hyperframes/
+film/.hyperframes/
+test-results/
+evidence/*.log
+evidence/browser/
+evidence/snapshots/
+AGENTS.md
+CLAUDE.md
+BRIEF.md
+meta.json

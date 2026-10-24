@@ -1,17 +1,27 @@
-# groundedwork — live demo
+# groundedwork — live playground
 
-An interactive, in-browser demo of [groundedwork](https://github.com/idanshimon/groundedwork) — a tiny, dependency-free retrieval layer that gives an LLM a knowledge base bigger than its context window, grounded and abstaining by default.
+[Open the playground](https://idanshimon.github.io/groundedwork-demo/) · [Watch the walkthrough](https://idanshimon.github.io/groundedwork-demo/walkthrough/) · [Library source](https://github.com/idanshimon/groundedwork)
 
-**[▶ Open the live demo](https://idanshimon.github.io/groundedwork-demo/)**
+A browser-only evidence inspector for groundedwork's actual TypeScript retrieval engine. Query 24 fictional Nimbus Coffee documents, inspect ranked results and the lexical floor, read verbatim source extracts, and expand **Prompt & metadata** to see the payload your model would receive.
 
-## Is it real?
+## What is real?
 
-Yes. This page runs the actual groundedwork **TypeScript engine** in your browser — the same implementation the project's test suite verifies byte-identical to the Python reference (to 9 decimal places). Every BM25 score, the relevance-floor decision, the grounded/abstain verdict, and the assembled prompt are computed live. No backend, no mockups, no hardcoded numbers.
+The playground computes retrieval results in the browser using the compiled TypeScript engine. It does not call an LLM. Source extracts are not generated answers. The engine version is read from the bundle, not a marketing badge.
 
-Type a question about a fictional coffee company's help docs and expand **"show what happened"** to watch the real pipeline: tokenized terms → BM25 scores vs the floor → the decision → the cache-aware prompt your model would receive.
+The five cases cover a refund lookup, an out-of-scope question, an intentional keyword mismatch, a multi-term query, and a product lookup. The mismatch is important: a document can pass the lexical floor without answering the question. `grounded=true` reports that a working set was returned, not semantic verification.
 
-groundedwork is **BYOM** — it never calls an LLM. The "answer" shown is the source document's text; everything before it is the real retrieval engine.
+## Walkthrough
 
----
+The separate 30-second, silent [HyperFrames walkthrough](walkthrough/) explains retrieval, the floor, abstention, and a recorded wrong match. It includes play/pause, replay, seeking, chapter navigation, reduced motion, chapter-synced readable captions, and a full text alternative.
 
-This repo hosts only the static demo. The library, tests, and docs live in the main repo.
+The walkthrough uses explicitly labeled recorded results from engine 0.1.0. The interactive playground uses the bundled engine 0.2.0; the demonstrated cases were verified unchanged. Recorded animation is not presented as a live engine execution.
+
+## Rebuild and test
+
+The playground's source, static builder and regression suite live in the library's `playground/` directory. Compile the TypeScript engine and run `python3 playground/build_static.py` there, then copy `playground/dist/index.html` here. No external runtime dependencies are needed by the generated page.
+
+The walkthrough's authoring source, pinned dependencies, evidence generator and browser tests are in `walkthrough/`. Its runtime assets are local. See [walkthrough/README.md](walkthrough/README.md) for development commands.
+
+To preview the combined site, serve this directory with any static HTTP server. The `walkthrough/` relative links then work without additional routing.
+
+The library, algorithm contract, shared fixtures and cross-language parity tests live in [idanshimon/groundedwork](https://github.com/idanshimon/groundedwork).
