@@ -30,6 +30,9 @@
   button:disabled { cursor: wait; opacity: .6; }
   .shell { max-width: 1184px; margin: auto; padding: 0 32px; }
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 88px; border-bottom: 1px solid var(--line); }
+  .brand-wrap { display: flex; flex-direction: column; gap: 2px; }
+  .home-link { font-size: 13px; color: var(--muted); text-decoration: none; }
+  .home-link:hover { color: var(--accent); text-decoration: underline; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; letter-spacing: -.6px; font-size: 21px; }
   .mark { display: grid; place-items: center; width: 28px; height: 28px; background: var(--ink); color: var(--mint); border-radius: 7px; font: 20px var(--mono); }
   nav { display: flex; gap: 20px; }
@@ -163,7 +166,10 @@
 <body>
 <div class="shell">
   <header class="topbar">
-    <div class="brand"><span class="mark" aria-hidden="true">g</span>groundedwork</div>
+    <div class="brand-wrap">
+      <a class="home-link" id="home-link" href="https://idanshimon.github.io/groundedwork/" aria-label="Back to idanshimon.github.io">&larr; <span id="home-label">groundedwork</span></a>
+      <div class="brand"><span class="mark" aria-hidden="true">g</span>groundedwork</div>
+    </div>
     <nav aria-label="Project">
       <a href="https://github.com/idanshimon/groundedwork">Source</a>
       <a class="walkthrough-cta" href="./walkthrough/" aria-label="Walkthrough" title="Watch how retrieval works — 30-second interactive guide"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="m10 8 6 4-6 4Z" fill="currentColor"/></svg><span>Watch walkthrough</span><span class="duration">30s</span></a>
@@ -741,5 +747,20 @@ try {
 }
 </script>
 <!-- playground:adapter:end -->
+<script>
+  /* "Back" returns to the page on idanshimon.github.io the visitor came
+     from (blog post, project page, home); otherwise the project page. */
+  (function () {
+    try {
+      var r = document.referrer ? new URL(document.referrer) : null;
+      if (r && r.origin === location.origin && r.pathname.indexOf("/groundedwork-demo") !== 0) {
+        var link = document.getElementById("home-link");
+        link.href = r.href;
+        var label = r.pathname.replace(/\/(index\.html)?$/, "").split("/").pop();
+        document.getElementById("home-label").textContent = label ? label.replace(/[-_]/g, " ") : "Home";
+      }
+    } catch (e) {}
+  })();
+</script>
 </body>
 </html>
