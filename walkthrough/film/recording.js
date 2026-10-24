@@ -1,0 +1,74 @@
+window.RECORDING = {
+  "provenance": "Recorded example · Nimbus sample documents",
+  "version": "0.1.0",
+  "config": {
+    "min_score": 0.5,
+    "top_k": 3,
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "results": [
+    {
+      "query": "How do I get a refund?",
+      "terms": [
+        "refund"
+      ],
+      "floor": 0.5,
+      "scored": [
+        {
+          "id": "returns",
+          "title": "Returns & Refunds",
+          "score": 3.8605
+        }
+      ],
+      "grounded": true,
+      "hits": [
+        {
+          "id": "returns",
+          "title": "Returns & Refunds",
+          "score": 3.8605,
+          "body": "Not happy with your beans? Return any unopened bag within 30 days for a full refund. Opened bags qualify for store credit. Email support to start a refund."
+        }
+      ],
+      "corpus_size": 24
+    },
+    {
+      "query": "What is the capital of France?",
+      "terms": [
+        "capital",
+        "france"
+      ],
+      "floor": 0.5,
+      "scored": [],
+      "grounded": false,
+      "hits": [],
+      "corpus_size": 24
+    },
+    {
+      "query": "when does it show up at my door?",
+      "terms": [
+        "show",
+        "up",
+        "door"
+      ],
+      "floor": 0.5,
+      "scored": [
+        {
+          "id": "pause",
+          "title": "Pausing Your Subscription",
+          "score": 2.9429
+        }
+      ],
+      "grounded": true,
+      "hits": [
+        {
+          "id": "pause",
+          "title": "Pausing Your Subscription",
+          "score": 2.9429,
+          "body": "Need a break? Pause your subscription for up to three months from your account dashboard. Billing and shipments stop while paused and resume automatically."
+        }
+      ],
+      "corpus_size": 24
+    }
+  ]
+};

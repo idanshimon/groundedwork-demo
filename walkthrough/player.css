@@ -1,0 +1,51 @@
+:root{color-scheme:light;--paper:#f5f4ed;--ink:#142b26;--muted:#52645b;--mint:#b9efcf;--line:#d5dbd1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-underline-offset:4px}
+button,input{font:inherit}
+button,a,input,summary{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #227952;outline-offset:5px}
+.site-header,main,footer{width:min(1200px,calc(100% - 64px));margin:auto}
+.site-header{display:flex;align-items:center;justify-content:space-between;min-height:106px;border-bottom:1px solid var(--line);gap:24px}
+.wordmark{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;text-decoration:none;letter-spacing:-1px}
+.wordmark-note{font-size:13px;font-weight:400;letter-spacing:0;margin-left:14px;color:var(--muted)}
+.brand-mark{width:18px;height:21px;border:2px solid var(--ink);border-top:7px solid var(--ink);border-radius:0 0 7px 7px;transform:rotate(-8deg)}
+.back-link{font-size:13px;text-decoration:none}.back-link span{margin-left:12px}
+.intro{padding:46px 0 30px}.eyebrow{font-size:10px;letter-spacing:2px;font-weight:700;margin:0 0 16px}
+h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(34px,4.2vw,56px);font-weight:400;letter-spacing:-2px;margin:0 0 14px}
+.intro>p:last-child{font-size:15px;color:var(--muted);line-height:1.6;margin:0}
+.player{border:1px solid #c6cec2;border-radius:5px;overflow:hidden;background:#fffefa;box-shadow:0 12px 36px #142b2608}
+.screen{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--paper)}
+iframe{border:0;position:absolute;top:0;left:0;width:1920px;height:1080px;transform-origin:top left;pointer-events:none}
+.start-overlay{position:absolute;right:3.5%;bottom:5%;display:flex;align-items:center;text-align:left;gap:14px;background:var(--ink);color:var(--paper);border:1px solid var(--mint);border-radius:3px;padding:15px 20px;cursor:pointer;box-shadow:0 6px 22px #142b261a}
+.start-overlay[hidden]{display:none}.start-icon{font-size:14px;color:var(--mint)}
+.start-overlay span:last-child{font-size:14px;font-weight:700}.start-overlay small{display:block;font-weight:400;font-size:11px;color:#c7d8cb;margin-top:5px}
+.transport{display:flex;align-items:center;gap:18px;padding:18px 24px;border-top:1px solid var(--line)}
+button{cursor:pointer}button:disabled{cursor:wait;opacity:.5}
+.transport button{border:0;background:none;font-size:12px;color:var(--ink);padding:8px 4px;min-width:48px}
+.transport .play-button{background:var(--ink);color:var(--paper);min-width:72px;border-radius:2px}
+input[type=range]{flex:1;min-width:40px;accent-color:#287e55;cursor:pointer;height:24px}
+output{font-family:monospace;font-size:11px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.silent-note{font-size:9px;letter-spacing:1px;color:var(--muted)}
+.chapters{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.chapters button{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px 12px;padding:18px 22px;text-align:left;color:var(--muted);border:0;border-right:1px solid var(--line);background:transparent;font-size:12px;position:relative}
+.chapters button:last-child{border-right:0}.chapters button span{font:11px monospace}
+.chapters button small{grid-column:2;font:10px monospace;color:var(--muted)}
+.chapters button[aria-current]{color:var(--ink);background:#e4f2e4}
+.chapters button[aria-current]::before{content:"";height:3px;background:#287e55;position:absolute;top:0;left:0;right:0}
+.under-player{display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--muted);font-size:11px;margin:15px 0 27px;line-height:1.5}
+.motion-option{display:flex;align-items:center;gap:6px;white-space:nowrap}.motion-option input{accent-color:#287e55}
+.transcript{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+summary{padding:19px 0;cursor:pointer;font-size:13px}summary>span{float:right;font-size:11px;color:var(--muted)}
+.transcript-body{max-width:850px;font-size:14px;line-height:1.8;padding:0 0 20px}.transcript-body p{margin:12px 0}.recording-note{color:var(--muted);font-size:12px}
+footer{display:flex;justify-content:space-between;padding:30px 0 40px;font-size:11px;color:var(--muted);gap:20px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.no-script{margin:24px}
+@media(max-width:700px){.site-header,main,footer{width:calc(100% - 32px)}.site-header{min-height:78px}.wordmark{font-size:20px}.wordmark-note,.silent-note{display:none}.back-link{font-size:11px}.intro{padding:32px 0 23px}h1{letter-spacing:-1.2px}.intro>p:last-child{font-size:13px;max-width:320px}.transport{gap:10px;padding:12px}.transport button{font-size:11px;min-width:40px}.transport .play-button{min-width:56px}.chapters button{display:block;padding:13px 9px;font-size:10px;line-height:1.5}.chapters button span,.chapters button small{display:block;font-size:9px}.start-overlay{padding:10px 12px;gap:10px}.start-overlay span:last-child{font-size:11px}.start-overlay small{font-size:9px}.under-player{font-size:10px;align-items:flex-start}summary>span{display:none}footer{line-height:1.6;font-size:10px}.transcript-body{font-size:13px}}
+.chapter-caption{border-left:3px solid #287e55;padding:4px 0 4px 20px;margin:24px 0;max-width:850px}
+.chapter-caption p:first-child{font-size:12px;font-weight:700;letter-spacing:.04em;margin:0 0 9px}
+.chapter-caption p:last-child{font-size:16px;line-height:1.6;margin:0;color:var(--ink)}
+.transport button,.motion-option,.back-link{min-height:44px;display:inline-flex;align-items:center}
+.transport input[type=range]{height:44px}
+@media(max-width:700px){.chapters{grid-template-columns:repeat(2,minmax(0,1fr))}.chapters button{min-height:66px;font-size:13px;padding:12px}.chapters button span,.chapters button small{font-size:11px}.under-player{flex-direction:column;gap:4px;font-size:12px}.motion-option{font-size:14px;gap:10px}.motion-option input{width:22px;height:22px}.transport button{font-size:12px}.chapter-caption{padding-left:14px;margin:20px 0}.chapter-caption p:last-child{font-size:16px}.back-link{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
